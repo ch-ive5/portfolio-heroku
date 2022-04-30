@@ -22,7 +22,7 @@ def page_not_found(e):
         message_body = f'SoundX\n404 Redirect\n{request.url}\nPage not found. Ran ferry_mod.render_home_template().'
         ferry_mod.admin_alert_thread('Web App - ERROR', message_body)
         return ferry_mod.render_home_template(), 404
-    if not request.path.startswith('/favicon') and not request.path.startswith('/robots'):
+    if not request.path.startswith('/favicon.ico') and not request.path.startswith('/robots'):
         message_body = f'Portfolio Page\n404 Redirect\n{request.url}\nPage not found. Rendered index.html.'
         ferry_mod.admin_alert_thread('Web App - ERROR', message_body)
         return render_template('index.html'), 404
