@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- Copyright 2021 Johnathan Pennington | All rights reserved. -->
+
+<head>
+    <meta charset="utf-8">
+    <title>SoundX | Ferry Route Optimizer</title>
+    <meta name="description" content="Calculate whether it's faster to take the Seattle/Bainbridge ferry or the Edmonds/Kingston ferry when traveling to and from Kitsap County, Washington.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include "icons.html" %}
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Futura, "Century Gothic", sans-serif;
+        }
+        .route-info-container {
+            display: block;
+            padding: 1px 30px 40px;
+            background-color: #000145;
+            color: #bfc1ff;
+        }
+        .route-info-container h3 {
+            text-align: center;
+            font-size: min(1.4em, 3.2vw);
+            text-size-adjust: none;
+            margin: 6px;
+        }
+        .route-info-container h3 {
+            color: white;
+        }
+        .white, .route-info-container h3 span {
+            color: #dedfff;
+        }
+        .route-info-container span {
+            font-size: 75%;
+        }
+        .route-info-container table {
+            font-size: min(1.2em, 2.76vw);
+            width: 100%;
+            border: 0;
+            border-spacing: 8px 3px;
+        }
+        .route-info-container p {
+            margin: 6px;
+            text-align: center;
+            font-size: min(1em, 2.3vw);
+        }
+        .table-divs {
+            margin: 44px 0px;
+        }
+        .table-col-left {
+            width: 50%;
+            text-align: right;
+        }
+        .table-col-right {
+            width: 50%;
+            text-align: left;
+        }
+        hr {
+            margin: 0;
+            border-style: solid;
+            color: #e0ded5;
+        }
+        a {
+            text-decoration: none;
+        }
+        .ferry-alerts-container {
+            background-color: white;
+        }
+        .ferry-alerts-heading {
+            text-align: center;
+            padding: 56px 0px 56px;
+        }
+        .ferry-alerts-heading h3 {
+            font-size: 27px;
+        }
+        .ferry-alerts-heading p {
+            font-size: 18px;
+        }
+        .ferry-alert {
+            padding: 44px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="route-info-container">
+        {% for route in data: %}
+        <div class="table-divs">{{ route|safe }}</div>
+        {% endfor %}
+        <div>
+            <p>ORIGIN: {{ origin }}</p>
+            <p>DESTINATION: {{ destination }}</p>
+        </div>
+    </div>
+
+    <div class="ferry-alerts-container">
+        <div class="ferry-alerts-heading">
+            <h3>FERRY ALERTS</h3>
+            <p>These updates may affect your trip!<br>Select an alert to read more.</p>
+        </div>
+        {% for alert_num in range(ferry_alerts|length): %}
+        <hr>
+        <div id="ferry-alert-{{ alert_num }}" class="ferry-alert">
+            <h4>{{ ferry_alerts[alert_num]['RouteAlertText'] }}</h4>
+            <div class="ferry-alert-details" style="display: none">{{ ferry_alerts[alert_num]['BulletinText']|safe }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+<script src="{{ url_for('static', filename='ferryresults.js') }}"></script>
+
+</html>

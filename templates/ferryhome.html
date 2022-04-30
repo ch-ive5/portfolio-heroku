@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- Copyright 2021 Johnathan Pennington | All rights reserved. -->
+
+<head>
+    <meta charset="utf-8">
+    <title>SoundX | Ferry Route Optimizer</title>
+    <meta name="description" content="Calculate whether it's faster to take the Seattle/Bainbridge ferry, the Edmonds/Kingston ferry, or neither when traveling to and from Kitsap County, Washington.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include "icons.html" %}
+    <style>
+
+        body {
+            background-color: hsl(238, 35%, 12%);
+            color: white;
+            margin: 100px 0;
+            font-family: Futura, "Century Gothic", sans-serif;
+        }
+        h1 {
+            font-size: min(3.8em, 8.3vw);
+            color: hsl(238, 100%, 87%);
+        }
+        h1, h4, p {
+            margin: 10px 5px;
+            padding: 0 5px;
+            text-align: center;
+            text-size-adjust: none;
+            -webkit-text-size-adjust: none;
+        }
+        .letter-x {
+            color: white;
+        }
+        h4 {
+            font-size: min(1.3em, 2.86vw);
+        }
+        p {
+            font-size: min(1em, 2.2vw);
+
+            color: hsl(238, 100%, 87%);
+        }
+        table {
+            margin: 50px auto;
+        }
+        td {
+            padding: 5px;
+        }
+        .table-col-left {
+            text-align: right;
+        }
+        .table-col-center {
+            text-align: center;
+        }
+        textarea, label {
+            font-size: min(1.25em, 2.75vw);
+        }
+        textarea {
+            width: min(20em, 66vw);
+            resize: vertical;
+            border-color: white;
+        }
+        textarea, #calculate-button {
+            color: white;
+            background-color: hsl(238, 25%, 25%);
+            border: 5px solid hsl(238, 40%, 60%);
+            outline: none;
+        }
+        textarea:focus {
+            border: 5px solid hsl(238, 100%, 95%);
+        }
+        ::placeholder {
+            opacity: 1;
+            color: hsl(238, 20%, 55%);
+        }
+        #calculate-button {
+            font-weight: bold;
+            text-size-adjust: none;
+            -webkit-text-size-adjust: none;
+            border-radius: 30px;
+            width: 100%;
+            padding: min(0.5em, 1.65vw) 0;
+            font-size: min(1.4em, 3.01vw);
+            font-weight: bold;
+        }
+        #calculate-button:hover, #calculate-button:active, #calculate-button:focus {
+            background-color: hsl(238, 60%, 90%);
+            color: black;
+        }
+        .error {
+            color: #fc0394;
+            text-align: center;
+            font-size: min(0.9em, 1.98vw);
+            margin: 0 5em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Sound<span class='letter-x'>X</span></h1>
+    <h4>Ferry Route Optimizer</h4>
+    <p><br>For your travels between Kitsap County (Bainbridge/Kingston side) <br>and King/Snohomish Counties (Seattle/Edmonds side).</p>
+
+    <form class="" action="{{ url_for('ferry_query') }}" method="get" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td class="table-col-left"><label>Origin:</label></td>
+                <td class="table-col-right"><textarea spellcheck="false" name="origin" placeholder="i.e. Ballard Market" rows="1" cols="32" wrap="off">{{ origin }}</textarea></td>
+            </tr>
+            <tr>
+                <td class="table-col-left"><label>Destination:</label></td>
+                <td class="table-col-right"><textarea spellcheck="false" name="destination" placeholder="i.e. 18779 Front St NE, Poulsbo" rows="1" cols="32" wrap="off">{{ destination }}</textarea></td>
+            </tr>
+            <tr>
+                <td class="table-col-center" colspan="2"><input id="calculate-button" class="button start-loading-animation" type="submit" name="" value="CALCULATE"></td>
+            </tr>
+
+        </table>
+    </form>
+
+    <div class="error">
+        <h4>{{ error }}</h4>
+    </div>
+
+    <canvas id="loading-animation" style="width: 100px; display: none; position: fixed; touch-action: none; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%)">Your browser does not support the canvas element.</canvas>
+
+</body>
+
+<script src="{{ url_for('static', filename='loading_animation.js') }}"></script>
+
+<script>
+// Scroll to error.
+errorMessage = document.querySelector('div.error h4');
+if (errorMessage.innerText !== '') { errorMessage.scrollIntoView(false); console.log('trigger') };
+</script>
+
+</html>

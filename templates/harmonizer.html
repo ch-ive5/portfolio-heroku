@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- Copyright 2021 Johnathan Pennington | All rights reserved. -->
+
+<head>
+    <meta charset="utf-8">
+    <title>HARMio | Melody Harmonizer</title>
+    <meta name="HARMio" content="Automated real-time harmonizer.">
+    {% include "icons.html" %}
+    <style>
+
+        body {
+            position: absolute;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        div.white-key, div.black-key, div.non-key {
+            box-sizing: border-box;
+            margin: 0;
+            border-style: solid;
+            padding: 0;
+        }
+        div.black-key, div.non-key {
+            grid-row: 1 / span 2;
+        }
+        div.white-key {
+            grid-row: 3 / span 2;
+        }
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(34, 1fr) repeat(29, 2fr);
+            grid-template-rows: repeat(4, auto);
+            width: 100%;
+        }
+        #keyboard, #keyboard div, div#harmony-direction-bright, div#harmony-direction-dark {
+            touch-action: none;
+            user-select: none;
+        }
+
+        div#panel {
+            width: 100%;
+        }
+
+        div#harmony-direction {
+            display: inline;
+            position: absolute;
+        }
+        div#harmony-direction-bright, div#harmony-direction-dark {
+            font-family: Futura, "Century Gothic", sans-serif;
+            text-align: center;
+        }
+
+        .chord-symbol {
+            font-family: Futura, "Century Gothic", sans-serif;
+            text-align: center;
+        }
+        .chord-symbol h1 {
+            margin: 0;
+        }
+        .chord-symbol-b, .chord-symbol-c {
+            font-weight: normal;
+        }
+        .chord-symbol-c {
+            vertical-align: 25%;
+        }
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="main-container">
+
+        <div id="keyboard" draggable="false">
+
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="non-key"></div>
+
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="non-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="non-key"></div>
+
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="non-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="black-key"></div>
+            <div class="white-key"></div>
+            <div class="non-key"></div>
+
+            <div class="white-key"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="non-key"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="non-key"></div>
+
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="non-key"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="black-key triggerable"></div>
+            <div class="white-key triggerable"></div>
+            <div class="non-key"></div>
+
+            <div class="white-key triggerable"></div>
+
+        </div>
+
+        <div id="panel">
+
+            <div id="harmony-direction">
+                <div id="harmony-direction-bright">bright</div>
+                <div id="harmony-direction-dark">dark</div>
+            </div>
+
+            <div class="chord-symbol">
+                <h1><span class="chord-symbol-a">C</span><span class="chord-symbol-b">hord</span><span class="chord-symbol-c"><sup>symbol</sup></span></h1>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="{{ url_for('static', filename='harmonizer.js') }}"></script>
+
+</html>

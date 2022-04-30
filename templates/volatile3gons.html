@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<!-- Copyright 2021 Johnathan Pennington | All rights reserved. -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Volatile3gons | Animation</title>
+    <meta name="description" content="">
+    {% include "icons.html" %}
+    <style>
+        body {
+            margin: 0;
+        }
+        canvas {
+            position: fixed;
+            touch-action: none;
+        }
+    </style>
+</head>
+
+<body class="text-settings">
+    <canvas id="canvas1">Your browser does not support the canvas element.</canvas>
+</body>
+
+<script src="{{ url_for('static', filename='volatile3gons.js') }}"></script>
+
+</html>

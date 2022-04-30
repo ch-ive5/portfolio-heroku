@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- Copyright 2021 Johnathan Pennington | All rights reserved. -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Web Apps | John Pennington</title>
+    <meta name="description" content="Check out some of my coding projects!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include "icons.html" %}
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: Menlo, Monaco, 'Courier New', monospace;
+            background-color: #1c1c1c;
+            color: hsl(0, 0%, 90%);
+        }
+        .soft-grey {
+            color: hsl(0, 0%, 60%);
+        }
+        .blue {
+            color: hsl(228, 100%, 70%);
+        }
+        .heading {  /* can delete */
+            font-size: x-large;
+            font-weight: bold;
+        }
+        .project-name {
+            font-size: 1.3em;
+        }
+        .project-description {
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+        .yellow {
+            color: hsl(42, 100%, 70%);
+        }
+        em {
+            color: hsl(12, 100%, 70%);
+        }
+        a {
+            color: hsl(128, 100%, 70%);
+        }
+        a:hover {
+            color: hsl(306, 100%, 50%);
+        }
+        div.code-block {
+            margin: 15px 0 0;
+            padding: 1px 1px 1px 40px;
+            border-left: 2px solid hsl(0, 0%, 30%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1 style='display: inline' class='blue'>JohnPennington</h1><p style='display: inline'><span class='soft-grey'> (</span><span class='yellow'>software_developer</span><span class='soft-grey'>):</span></p>
+    </div>
+
+    <div class='code-block'>
+
+        <br>
+
+        <p><span class='yellow'>LOCATION</span><span class='soft-grey'> = </span><span class='soft-grey'>[</span>Seattle<span class='soft-grey'>, </span>Washington<span class='soft-grey'>]</span></p>
+        <p><span class='yellow'>CONTACT</span><span class='soft-grey'> = </span><a href='mailto:john.penningt1@gmail.com'>john.penningt1@gmail.com</a></p>
+        <p><span class='yellow'>GITHUB</span><span class='soft-grey'> = </span><a href='https://github.com/ch-ive5' target="_blank">github.com/ch-ive5</a></p>
+        <p><span class='yellow'>LINKEDIN</span><span class='soft-grey'> = </span><a href='https://www.linkedin.com/in/john-penningt1/' target="_blank">linkedin.com/in/john-penningt1</a></p>
+        <p><span class='yellow'>CV</span><span class='soft-grey'> = </span><a href="{{ url_for('static', filename='PenningtonCV.pdf', _external=True) }}" target="_blank">{{ url_for('static', filename='PenningtonCV.pdf', _external=True).split('//', 1)[-1] }}</a></p>
+
+        <br><br>
+
+        <p class='soft-grey'># Check out some of my projects below.</p>
+        
+        <br><br>
+
+        <h3><a href="https://coregame.herokuapp.com/" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>Core</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>online_game</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>JavaScript</em></p>
+            <p><span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>An original online game using the HTML <span class='soft-grey'>&lt;</span><em>canvas</em><span class='soft-grey'>&gt;</span> element and the <em>Web Audio API</em>. It is responsive, compatible with desktop and mobile web browsers, and can be controlled using arrow-keys, mouse, or <em>Touch Events</em>. I also enjoyed doing all original <em>graphic</em> and <em>sound design</em> for this project.</p>
+            <a href="https://github.com/ch-ive5/core-web-app" target="_blank">View source code</a>
+            <br>
+            <br>
+            <a href="https://coregame.herokuapp.com/" target="_blank">Play Core</a>
+        </div>
+
+        <br><br><br>
+
+        <h3><a href="https://word--play.herokuapp.com/" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>WORD<span class='soft-grey'>=></span>PLAY</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>fun_with_synonyms</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>Python</em></p>
+            <p>
+                <span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>This web app finds paths that connect random words entered by the user. I sourced words, definitions, and pointers from <em>WordNet</em>, an English database from Princeton. My code searches through the database, using synonym-like relationships to go from word to word until reaching the desired target. For the web design, I used the <em>Jinja</em> template engine to inject custom <em>CSS</em> and style paths based on their length.
+            </p>
+            <a href="https://github.com/ch-ive5/WORDPLAY" target="_blank">View source code</a>
+            <br>
+            <br>
+            <a href="https://word--play.herokuapp.com/" target="_blank">Go to WORD=>PLAY</a>
+        </div>
+
+        <br><br><br>
+
+        <h3><a href="{{ url_for('ferry') }}" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>SoundX</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>ferry_route_optimizer</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>Python</em></p>
+            <p>
+                <span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>I often travel to and from Kitsap County, Washington, and it's sometimes complicated deciding whether to use the Seattle/Bainbridge or the Edmonds/Kingston ferry routes <span class='soft-grey'>(depending on the destination, traffic, ferry schedules, etc.)</span>. So I wrote code which figures this all out for me! 
+                <br><br>
+                It uses data from the <em>Google Routes API</em> to determine drive times to and from each ferry terminal, and uses data from the <em>WSDOT API</em> to coordinate ferry departures and show relevant ferry alerts. The web design is responsive with desktop and mobile in mind. I also enjoyed programming an original loading animation for this project using the HTML <span class='soft-grey'>&lt;</span><em>canvas</em><span class='soft-grey'>&gt;</span> element.
+            </p>
+            <a href="https://github.com/ch-ive5/portfolio" target="_blank">View source code</a>
+            <br>
+            <br>
+            <a href="{{ url_for('ferry') }}" target="_blank">Go to SoundX</a>
+        </div>
+
+        <br><br><br>
+
+        <h3><a href="{{ url_for('harmonizer') }}" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>HARMio</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>real_time_melody_harmonizer</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>JavaScript</em></p>
+            <p>
+                <span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>For this project, the user can play any melody, and it will be harmonized in real-time. Sound is generated using a 4-voice triangular wave synthesizer created within the <em>Web Audio API</em>. For any given note entered, I created a database of possible chords. The chords are indexed by tonal center, and are chosen based on proximity to the last implied tonal center. I use a random log-based probability function, and weight nearby tonal centers to occur more frequently, with more distantly related chords happening occasionally. The colors within the app change along with the implied tonal center.
+            </p>
+            <a href="https://github.com/ch-ive5/portfolio" target="_blank">View source code</a>
+            <br>
+            <br>
+            <a href="{{ url_for('harmonizer') }}" target="_blank">Go to HARMio</a>
+        </div>
+
+        <br><br><br>
+
+        <h3><a href="{{ url_for('volatile3gons') }}" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>Volatile3gons</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>animation</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>JavaScript</em></p>
+            <p>
+                <span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>I originally designed this animation using the <em>tkinter</em> GUI package, and converted it to <em>JavaScript</em> for the web. Each time a click or key press is detected, a random hue and motion is assigned to the shapes.
+            </p>
+            <a href="https://github.com/ch-ive5/volatile3gons-tkinter" target="_blank">View original tkinter source code</a>
+            <br>
+            <br>
+            <a href="https://github.com/ch-ive5/portfolio" target="_blank">View web app source code</a>
+            <br>
+            <br>
+            <a href="{{ url_for('volatile3gons') }}" target="_blank">Go to Volatile3gons</a>
+        </div>
+
+        <br><br><br>
+
+        <h3><a href="https://www.beetleboxmusic.com/" target="_blank" style='text-decoration: none'>
+            <span class='blue project-name'>Beetlebox</span><span class='project-description'><span class='soft-grey'> (</span><span class='yellow'>music</span><span class='soft-grey'>):</span></span>
+        </a></h3>
+        <div class='code-block'>
+            <p><span class='yellow'>GENRE</span><span class='soft-grey'> = </span><span class='soft-grey'>[</span>piano<span class='soft-grey'>, </span>electronic<span class='soft-grey'>, </span>experimental<span class='soft-grey'>]</span></p>
+            <p><span class='yellow'>MAIN_LANGUAGE</span><span class='soft-grey'> = </span><em>Pure Data</em></p>
+            <p>
+                <span class='yellow'>DESCRIPTION</span><span class='soft-grey'> = </span>Beetlebox is my original, piano-centered electronic music project. The human piano part is enhanced by electronic sounds, homemade software synthesizers, and computer accompaniment. Live performances include quite a bit of improvised/spontaneous sections. The electronics are interactive, and respond to unplanned inputs, forming a duet between piano and computer. The audio coding is done with the <em>Pure Data</em> interactive audio programming language. I also did all of the original <em>graphic design</em> and <em>video production</em>.</p>
+            <a href="https://www.beetleboxmusic.com/" target="_blank">beetleboxmusic.com</a>
+            <br>
+            <br>
+            <a href="https://www.youtube.com/beetleboxmusic" target="_blank">YouTube</a>
+            <br>
+            <br>
+            <a href="https://soundcloud.com/beetleboxmusic" target="_blank">SoundCloud</a>
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+    <br><br><br>
+    <p class='soft-grey'># Copyright 2021 John Pennington | All rights reserved.</p>
+
+</body>
+</html>
